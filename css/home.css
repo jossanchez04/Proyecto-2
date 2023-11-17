@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;1,6..12,200&display=swap');
+
+button {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #3E77B7; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Add a lighter hover effect for the button */
+button:hover {
+    background-color: #5695CC; /* Lighter blue on hover */
+}
+
+.contentFriend,
+.homeContent {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    height: 100%;
+}
+
+.homeContent {
+    width: 70%;
+    margin: 10px;
+}
+
+.contentFriend {
+    width: 25%;
+}
+
+.subSectionTittleMain,
+.subSectionTittle {
+    color: #285CA0;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 28px;
+}
+
+.subSectionTittleMain {
+    display: inline-block;
+    flex: 1;
+    width: 89%;
+}
+
+.contentFriend h1 {
+    color: #285CA0;
+}
+
+.logoFriendImg {
+    display: inline-block;
+    width: 50px; 
+    height: 50px;
+}
+
+.postBlock {
+    display: block;
+    border: #5695CC 2px solid;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.postUsername {
+    display: inline-block;
+    font-size: 17px;
+    flex: 1;
+    margin-left: 5px;
+    font-weight: bold;  
+    color: #5695CC;
+}
+
+.friendUsername {
+    display: inline-block;
+    font-size: 15px;
+    flex: 1;
+}
+
+.friendBox {
+    border: #5695CC 2px solid;
+    margin: 3px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.recommendedUser {
+    font-weight: bold;  
+    color: #5695CC;
+}
+
+.userNameBlockPost {
+    display: flex;
+    align-items: center;
+}
+
+.addFriendButton {
+    align-self: end;
+}
+
+.addNewRecommendedFriendButton {
+    background-color: #609966;
+}
+
+.addNewRecommendedFriendButton:hover {
+    background-color: #9DC08B;
+}
+
+.waveTheme {
+    width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    height: auto;
+
+    background-image: url('/image/wave4.png');
+    background-size: 500px 200px;
+    background-position: 10% top; /* Top aligns the top of the image with the top of the div */
+    animation: scroll 50s linear infinite; /* Adjust the animation duration as needed */
+}
+
+@keyframes scroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+.waveContent {
+    padding: 30px;
+    padding-top: 60px;
+
+    font-weight: bold;
+    font-size: 16px;  
+    color: #fff;
+}

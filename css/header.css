@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;1,6..12,200&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+header {
+    background: linear-gradient(to right, #F0F2F0, #000C40); /* Gradient with more colors */
+    color: white;
+    padding: 10px 0;
+}
+
+nav {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logoHeader {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    padding: 10px 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: #83a4d4;
+}
+
+.logoHeaderImg {
+    width: 75px; /* Adjust the width as needed */
+    height: 75px;
+    margin-right: 10px; /* Add some spacing between the image and the text */
+}
+
+.logoHeaderText {
+    font-size: 24px; /* Adjust the font size as needed */
+}
+

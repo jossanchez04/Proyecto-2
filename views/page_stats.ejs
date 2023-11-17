@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="---AA-Compatible" content="IE=edge">
+    <meta name= "viewport" content= "width-device-width, initial-scale=1.0">
+    <title>Page Statistics</title>
+    <link rel="stylesheet" href="/page_stats.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <div class="word_searcher">
+        <div class="word_add">
+            <h2>Page Searcher:</h2>
+            <form action="/addPageToList" method="POST">
+                <input type="text" name="pageLink" required></input>
+                <button type="submit" class="search_word_button1">Select Page</button>
+            </form>
+        </div>
+
+        <div class="word_options">
+
+            <% if (pages.length > 0) {%>
+                <% pages.forEach(palabra => { %>
+                
+                    <a class="show_word" href="/removePage" id="code_to_access">
+                        <%= palabra %>
+                    </a>
+
+                <% }) %>
+            <%} else { %> 
+                <h4 class="no_words_selected">There are no pages selected</h4>
+            <%} %>
+            
+        </div>
+    </div>
+
+    <div class="word_appearance_container">
+        <div class="word_appearance_header_total">
+            <div class="word_appearance_header">
+                <h2>Page Statistics: </h2>
+                <button type="submit" class="search_word_button" onclick="snap_by_tittle()">
+                    Search Selected Page by Title
+                </button>
+            </div>
+
+            <div class="word_options">
+
+                <% if (searchedPages.length > 0) {%>
+                    <% searchedPages.forEach(palabra => { %>
+                    
+                        <a class="show_word" href="#">
+                            <%= palabra %>
+                        </a>
+    
+                    <% }) %>
+                <%} else { %> 
+                <%} %>
+                
+            </div>
+        </div>
+
+        <% if (datosDeWebsite.length > 0) {%>
+            <% datosDeWebsite.forEach(pagina => { %>
+            
+                <div class="word_appearance" id="<%= pagina.title %>">
+                    <div class="word_appearance_header">
+                        <img src="/image/wiki.png" class="word_logo">
+                        <h3 class="wikipedia_tittle"><%= pagina.title %></h3>
+                        <a class="wikipedia_link" target="_blank" href="<%= pagina.ID %>">[Link de Acceso]</a>
+                    </div>
+        
+                    <div class="word_statistics_container">
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Amount of Titles</h3>
+                            <p class="statistics_result"><%= pagina.amountOfTitles %></p>   
+                        </div>
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Amount of references with links</h3>
+                            <p class="statistics_result"><%= pagina.amountReferences %></p>   
+                        </div>
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Amount of active references links</h3>
+                            <p class="statistics_result"><%= pagina.amountActiveReferences %></p>   
+                        </div>
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Amount of images with descriptions</h3>
+                            <p class="statistics_result"><%= pagina.total_images %></p>   
+                        </div>
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Amount of different words per image [Stemming]</h3>
+                            <p class="statistics_result"><%= pagina.unique_words %></p>   
+                        </div>
+        
+                    </div>
+        
+                    <h3 class="wikipedia_tittle">Amount of distinct words [Stemming]</h3>
+        
+                    <div class="word_tags_statistics">
+                        
+                        <%
+                        let tagsAndPercentages = pagina.distinct_word;
+                        let tagsArray = tagsAndPercentages.split(',');
+
+                        let tagsObject = {};
+
+                        tagsArray.forEach(tag => {
+                            let [key, value] = tag.split(':').map(item => item.trim());
+                            tagsObject[key] = parseFloat(value);
+                        });
+
+                        for (let key in tagsObject) {
+                            if (tagsObject.hasOwnProperty(key)) { %>
+                                <div class="tag_statistic">
+                                    <h4><%= key %></h4>
+                                    <p><%= tagsObject[key] %> Words </p>
+                                </div>
+                        <%  }
+                        } %>
+
+                    </div>
+                    
+                    <h3 class="wikipedia_tittle">Most Common Words</h3>
+        
+                    <div class="word_tags_statistics">
+
+                        <%
+                        let keyToFind = pagina.ID; // Replace 'yourKey' with the actual key you are looking for
+                        let top = "";
+                        for (let i = 0; i < topPalabras.length; i++) {
+                            if (topPalabras[i].ID_Wikipedia == keyToFind) {
+                                top = topPalabras[i].top_words
+                            }
+                        }
+
+                        let topsArray = top ? top.split(',') : [];
+
+                        let topsObject = {};
+
+                        topsArray.forEach(tag => {
+                            let [key, value] = tag.split(':').map(item => item.trim());
+                            topsObject[key] = parseFloat(value);
+                        });
+
+                        for (let key in topsObject) {
+                            if (topsObject.hasOwnProperty(key)) { %>
+                                <div class="tag_statistic">
+                                    <h4><%= key %></h4>
+                                    <p><%= topsObject[key] %> Words </p>
+                                </div>
+                    <%      }
+                        }
+                    %>
+
+                    </div>
+        
+                    <h3 class="wikipedia_tittle">Reference Use In Text</h3>
+        
+                    <div class="word_tags_statistics">
+                        <%
+                        let keyToFind2 = pagina.ID; // Replace 'yourKey' with the actual key you are looking for
+                        let topR = "";
+                        for (i = 0; i < topReferences.length; i++) {
+                            if (topReferences[i].ID_Wikipedia == keyToFind2) {
+                                topR = topReferences[i].reference_text
+                            }
+                        }
+
+                        let topsRArray = topR ? topR.split(',') : [];
+
+                        let topsRObject = {};
+
+                        topsRArray.forEach(tag => {
+                            let [key, value] = tag.split(': ').map(item => item.trim());
+                            topsRObject[key] = parseFloat(value);
+                        });
+
+                        for (let key in topsRObject) {
+                            if (topsRObject.hasOwnProperty(key)) { %>
+                                <div class="tag_statistic">
+                                    <h4><%= key %></h4>
+                                    <p><%= topsRObject[key] %> </p>
+                                </div>
+                    <%      }
+                        }
+                    %>
+                    </div>
+        
+                </div>
+
+            <% }) %>
+        <%} else { %> 
+        <%} %>
+
+    </div>
+    
+    <% if (error != null) { %>
+        <script>
+            alert("<%= error %>");
+        </script>
+    <% } %>
+
+    <script>
+        function snap_by_tittle() {
+            var element = document.getElementById('code_to_access');
+            var textContent;
+            if (element) {
+                textContent = element.textContent || element.innerText;
+                console.log(textContent.trim());
+
+                // Extracting the ID from the text content
+                var extractedId = textContent.trim();
+
+                // Using the extracted ID to get the target element
+                var targetSection = document.getElementById(extractedId);
+                if (targetSection) {
+                    var rect = targetSection.getBoundingClientRect();
+                    var offset = rect.top + window.scrollY + (rect.height / 2) - (window.innerHeight / 2);
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
+    
+
+</body>
+</html>

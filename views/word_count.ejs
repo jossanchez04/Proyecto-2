@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="---AA-Compatible" content="IE=edge">
+    <meta name= "viewport" content= "width-device-width, initial-scale=1.0">
+    <title>Word Count</title>
+    <link rel="stylesheet" href="/word_count.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <div class="word_searcher">
+        <div class="word_add">
+            <h2>Word Selector:</h2>
+            <form action="/addWordToList" method="POST">
+                <input type="text" name="newWord" required></input>
+                <button type="submit" class="search_word_button">Add Word</button>
+            </form>
+        </div>
+
+        <div class="word_options">
+
+            <% if (palabras.length > 0) {%>
+                <% palabras.forEach(palabra => { %>
+                
+                    <a class="show_word" href="/removeWord/<%= palabra %>">
+                        <%= palabra %>
+                    </a>
+
+                <% }) %>
+            <%} else { %> 
+                <h4 class="no_words_selected">There are no words selected</h4>
+            <%} %>
+            
+        </div>
+    </div>
+
+    <div class="word_appearance_container">
+        <div class="word_appearance_header_total">
+            <div class="word_appearance_header">
+                <h2>Word Statistics: </h2>
+                <a class="word_statistics_link" href="/searchWords">
+                    <button type="submit" class="search_word_button">
+                        Search Words
+                    </button>
+                </a>
+                <a class="word_statistics_link" href="/clearWords">
+                    <button type="submit" class="search_word_button">
+                        Clear Search
+                    </button>
+                </a>
+            </div>
+
+            <div class="word_options">
+
+                <% if (searchedPalabras.length > 0) {%>
+                    <% searchedPalabras.forEach(palabra => { %>
+                    
+                        <a class="show_word" href="#">
+                            <%= palabra %>
+                        </a>
+    
+                    <% }) %>
+                <%} else { %> 
+                <%} %>
+                
+            </div>
+        </div>
+
+        <% if (datosDePagina.length > 0) {%>
+            <% let contador = 0%>
+            <% for (let info of datosDePagina) { %>
+            
+                <%if (contador >= 1000) {  
+                      break; // Breaks the loop when repetitions are 1000 or more  
+                    }  
+                contador++  %>
+                
+
+                <div class="word_appearance">
+                    <div class="word_appearance_header">
+                        <img src="/image/wiki.png" class="word_logo">
+                        <h3 class="wikipedia_tittle"><%= info.title %></h3>
+                        <a class="wikipedia_link" target="_blank" href="<%= info.id_wikipedia %>">[ Link ]</a>
+                        <p class="word_appearance_text">| <span class="word_highlight"><%= info.word %></span> | Total appereances: <%= info.repetitions %></p>
+                    </div>
+        
+                    <div class="word_statistics_container">
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Titles</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: <%= info.title_ratio %>%;"></div> 
+                                <span class="percentage"><%= info.title_ratio %>%</span> 
+                            </div>    
+                        </div>
+        
+                        <div class="word_statistics">
+                            <h3 class="statistic_subtittle">Text</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: <%= info.percentage %>%;"></div> 
+                                <span class="percentage"><%= info.percentage %>%</span> 
+                            </div>    
+                        </div>
+        
+                    </div>
+        
+                    <h3 class="wikipedia_tittle">Tag Appereances</h3>
+        
+                    <div class="word_tags_statistics">
+
+                        <%
+                        let tagsAndPercentages = info.tags_and_percentages;
+                        let tagsArray = tagsAndPercentages.split(',');
+
+                        let tagsObject = {};
+
+                        tagsArray.forEach(tag => {
+                            let [key, value] = tag.split(':').map(item => item.trim());
+                            tagsObject[key] = parseFloat(value);
+                        });
+
+                        for (let key in tagsObject) {
+                            if (tagsObject.hasOwnProperty(key)) { %>
+                                <div class="tag_statistic">
+                                    <h4><%= key %></h4>
+                                    <p><%= tagsObject[key] %>% </p>
+                                </div>
+                        <%  }
+                        } %>
+
+                    </div>
+        
+                </div>
+
+            <% } %>
+        <%} else { %> 
+
+        <%} %>
+        
+
+    </div>
+    
+    <% if (error != null) { %>
+        <script>
+            alert("<%= error %>");
+        </script>
+    <% } %>
+
+</body>
+</html>

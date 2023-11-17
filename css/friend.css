@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;1,6..12,200&display=swap');
+
+button {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #3E77B7; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Add a lighter hover effect for the button */
+button:hover {
+    background-color: #5695CC; /* Lighter blue on hover */
+}
+
+.contentFriend,
+.homeContent {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    height: 100%;
+}
+
+.homeContent {
+    width: 70%;
+    margin: 10px;
+}
+
+.contentFriend {
+    width: 25%;
+}
+
+.subSectionTittle {
+    color: #285CA0;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 28px;
+}
+
+.contentFriend h1 {
+    color: #285CA0;
+}
+
+.logoFriendImg {
+    display: inline-block;
+    width: 50px; 
+    height: 50px;
+}
+
+.postBlock {
+    display: block;
+    border: #5695CC 2px solid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.friendUsername {
+    display: inline-block;
+    font-size: 15px;
+    flex: 1;
+}
+
+.friendBox {
+    border: #5695CC 2px solid;
+    margin: 3px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.recommendedUser {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #5695CC;
+}
+
+.userNameBlockPost {
+    display: flex;
+    align-items: center;
+}
+
+.addFriendButton {
+    align-self: end;
+}
+
+.addNewRecommendedFriendButton {
+    background-color: #609966;
+}
+
+.addNewRecommendedFriendButton:hover {
+    background-color: #9DC08B;
+}
+
+.friendContent {
+    vertical-align: top;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    height: 100%;
+    width: 95%;
+    margin: 10px;
+    /* border: #285CA0 2px solid; */
+}
+
+.searchFriendBox input {
+    font-family: 'Nunito Sans', sans-serif;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.rejectButtonFriend {
+    background-color: #C70039;
+}
+
+.rejectButtonFriend:hover {
+    background-color: #FF6969;
+}
+
+.acceptButtonFriend {
+    background-color: #609966;
+}
+
+.acceptButtonFriend:hover {
+    background-color: #9DC08B;
+}   

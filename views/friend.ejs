@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="---AA-Compatible" content="IE=edge">
+    <meta name= "viewport" content= "width-device-width, initial-scale=1.0">
+    <title>Friend's</title>
+    <link rel="stylesheet" href="/friend.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+
+
+    <div class="homeContent">
+        <div class="friendRequestsDiv">
+            <div class="friendContent">
+                <h1 class="subSectionTittle">Send Friend Request</h1>
+
+                <form action="/sendFriendRequest" method="POST" class="searchFriendBox">
+                    <input type="text" name="friendName" placeholder="Enter friend's username">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+
+            <div class="friendContent">
+                <h1 class="subSectionTittle">Friend Request's</h1>
+
+                <% if (friendRequests.length > 0) {%>
+                    <% friendRequests.forEach(user => { %>
+                    
+                        <div class="friendBox">
+                            <img src="/image/user.png" class="logoFriendImg">
+                            <p class="friendUsername"><%= user.get('from').properties.username %></p>
+                            <div class="friendRequestButtons">
+                                <form action="/declineFriend/<%= user.get('from').properties.username %>" method="POST">
+                                    <button class="rejectButtonFriend" type="submit">Reject</button>
+                                </form>
+                                <form action="/acceptFriend/<%= user.get('from').properties.username %>" method="POST">
+                                    <button class="acceptButtonFriend" type="submit">Accept</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    <% }) %>
+                <%} else { %> 
+                    <h4 class="requestsNoUsers">There are no friend requests</h4>
+                <%} %>
+
+            </div>
+
+            <div class="friendContent">
+                <h1 class="subSectionTittle">Request's Sent</h1>
+
+                <% if (requestsList.length > 0) {%>
+                    <% requestsList.forEach(user => { %>
+                    
+                        <div class="friendBox">
+                            <img src="/image/user.png" class="logoFriendImg">
+                            <p class="friendUsername"><%= user.get('to').properties.username %></p>
+                            <div class="requestButtons">
+                                <form action="/cancelRequest/<%= user.get('to').properties.username %>" method="POST" class="cancelButtonFriend">
+                                    <button type="submit">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    <% }) %>
+                <%} else { %> 
+                    <h4 class="requestsNoUsers">There are no requests</h4>
+                <%} %>
+
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="contentFriend">
+
+        <h1 class="subSectionTittle">Friend's</h1>
+        
+        <% if (friendsList.length > 0) {%>
+            <% friendsList.forEach(user => { %>
+                <div class="friendBox">
+                    <img src="/image/user.png" class="logoFriendImg">
+                    <p class="friendUsername"><%= user.get('from').properties.username %></p>
+                    <form action="/removeFriend/<%= user.get('from').properties.username %>" method="POST">
+                        <button class="rejectButtonFriend" type="submit">Remove</button>
+                    </form>
+                </div>
+            <% }) %>
+        <%} else { %> 
+            <h2 class="requestsUsers">No friends yet!</h2>
+        <%} %>
+
+        <h1 class="subSectionTittle">You might know</h1>
+        
+        <% if (recommendedList.length > 0) {%>
+            <% recommendedList.forEach(user => { %>
+                <div class="friendBox">
+                    <img src="/image/user.png" class="logoFriendImg">
+                    <p class="friendUsername"><%= user.get('to').properties.username %></p>
+                    <form action="/sendFriendRequest" method="POST">
+                        <input type="hidden" name="friendName" value="<%= user.get('to').properties.username %>">
+                        <button class="addNewRecommendedFriendButton">Add Friend</button>
+                    </form>
+                </div>
+            <% }) %>
+        <%} else { %> 
+            <h2 class="requestsUsers">No recommendations</h2>
+        <%} %>
+
+    </div>
+
+
+
+</body>
+</html>

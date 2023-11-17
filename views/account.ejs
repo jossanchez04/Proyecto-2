@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="---AA-Compatible" content="IE=edge">
+    <meta name= "viewport" content= "width-device-width, initial-scale=1.0">
+
+    <title>Account</title>
+    <link rel="stylesheet" href="/account.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    
+    <div class="content">
+        <h1>Account Tab</h1>
+        <a href="/">
+            <button class="logOutButton">Log Out</button>
+        </a>
+    </div>
+
+    <form action="/modifyAccount" method="post" class="accountInformation Division">
+        <label>Username: </label>
+        <input type="text" name="username" value="<%= person.username%>" placeholder="New Username" required>
+    
+        <label>Mail: </label>
+        <input type="text" name="email" value="<%= person.email%>" placeholder="New email" required>
+
+        <label>Password: </label>
+        <input type="password" name="password" value="<%= person.password%>" id="passwordInput" placeholder="New Password" required>
+        <button type="button" id="togglePassword" class="toggleViewPassword">
+            <img src="/image/view.png" class="imageviewIcon">
+        </button>
+    
+        <label>Date of Birth: </label>
+        <input type="date" name="dateOfBirth" value="<%= person.birthdate%>" placeholder="Select your birthdate" required>
+    
+        <button type="submit" class="updateInformationButton">Update Information</button>
+    </form>    
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('passwordInput');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+
+</body>
+</html>

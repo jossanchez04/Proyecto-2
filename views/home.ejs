@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="---AA-Compatible" content="IE=edge">
+    <meta name= "viewport" content= "width-device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+
+
+    <div class="homeContent">
+        <h1 class="subSectionTittleMain">Home</h1>
+
+            <div class="wordContent">
+                <h1 class="subSectionTittle">General Statistics</h1>
+
+                <form action="/searchWords" method="POST" class="searchFriendBox">
+                    <input type="text" name="words" placeholder="Enter words you want to search">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+    
+    </div>
+
+</body>
+</html>

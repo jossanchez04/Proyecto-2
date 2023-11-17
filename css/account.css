@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;1,6..12,200&display=swap');
+
+button {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #3E77B7; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #5695CC; 
+}
+
+.content {
+    padding: 20px;
+    margin-left: 7%;
+    width: 80%;
+
+    
+    display: flex;
+    align-items: center;
+}
+
+.content h1 {
+    color: #285CA0;
+    display: inline-block;
+    flex: 1;
+}
+
+.content h2 {
+    color: #4A88C8;
+}
+
+.logOutButton {
+    background-color: #C70039;
+}
+
+.logOutButton:hover {
+    background-color: #FF6969;
+}
+
+.updateInformationButton {
+    background-color: #609966;
+}
+
+.updateInformationButton:hover {
+    background-color: #9DC08B;
+}  
+
+form {
+    margin-left: 10%;
+}
+
+input {
+    font-family: 'Nunito Sans', sans-serif;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: #4A88C8;
+    font-weight: bold;
+}
+
+.imageviewIcon {
+    width: 25px;
+    height: auto;
+}
+
+.toggleViewPassword {
+    position: absolute;
+    right: 330px; /* Adjust the button's position as needed */
+    top: 46.8%;
+    transform: translateY(-50%);
+    padding: 5px;
+    background: none;
+}
+
+.toggleViewPassword:hover {
+    background: none;
+}
